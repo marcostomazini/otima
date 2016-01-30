@@ -35,6 +35,7 @@ exports.photo = function(req, res) {
                     url: result.url,
                     public_id: result.public_id
                 };
+                res.json({'type': urlPhoto});
             },
             {
                 crop: 'limit',
@@ -42,6 +43,4 @@ exports.photo = function(req, res) {
                 height: 800
             }      
         );
-
-	res.json({'type': urlPhoto});
 };
