@@ -4,12 +4,53 @@ angular
         .module('app.core')
         .controller('AngularCarouselController', AngularCarouselController);
 
-    AngularCarouselController.$inject = ['$scope', '$timeout', '$http', 'SweetAlert', 'ngDialog'];
+    AngularCarouselController.$inject = ['$scope', '$timeout', '$http', '$interval', 'SweetAlert', 'ngDialog'];
 
-    function AngularCarouselController($scope, $timeout, $http, SweetAlert, ngDialog) {
-        var vm = this;
+    function AngularCarouselController($scope, $timeout, $http, $interval, SweetAlert, ngDialog) {
+        var vm = this;        
 
         vm.showsaldo = false;
+        vm.principal = false;
+
+        vm.masculino = [{
+                  id: 1,
+                  label: 'slide #1',
+                  desc: 'Museu',
+                  img: '/server/h1.jpg'
+              },
+              {
+                  id: 2,
+                  label: 'slide #2',
+                  desc: 'Ponto Turistico',
+                  img: '/server/h2.png'
+              }];
+
+              vm.feminino = [{
+                  id: 1,
+                  label: 'slide #1',
+                  desc: 'Museu',
+                  img: '/server/f1.jpeg'
+              },
+              {
+                  id: 2,
+                  label: 'slide #2',
+                  desc: 'Ponto Turistico',
+                  img: '/server/f2.jpg'
+              }];
+
+        $interval(function() {
+          vm.principal = !vm.principal;
+
+          if (1 == 1) {
+            // homem
+            vm.banners = vm.masculino;
+
+          } else {
+            //mluher
+            vm.banners = vm.feminino;
+          }
+
+        }, 20000);
 
         activate();        
 
@@ -88,24 +129,7 @@ angular
             }, 120000);
         }
 
-        function activate() {
-          vm.colors = ['#fc0003', '#f70008', '#f2000d', '#ed0012', '#e80017', '#e3001c', '#de0021', '#d90026', '#d4002b', '#cf0030', '#c90036', '#c4003b', '#bf0040', '#ba0045', '#b5004a', '#b0004f', '#ab0054', '#a60059', '#a1005e', '#9c0063', '#960069', '#91006e', '#8c0073', '#870078', '#82007d', '#7d0082', '#780087', '#73008c', '#6e0091', '#690096', '#63009c', '#5e00a1', '#5900a6', '#5400ab', '#4f00b0', '#4a00b5', '#4500ba', '#4000bf', '#3b00c4', '#3600c9', '#3000cf', '#2b00d4', '#2600d9', '#2100de', '#1c00e3', '#1700e8', '#1200ed', '#0d00f2', '#0800f7', '#0300fc'];
-
-          function getSlide(target, style) {
-              var i = target.length;
-              return {
-                  id: (i + 1),
-                  label: 'slide #' + (i + 1),
-                  desc: 'Memorial Exemplo' + (i + 1),
-                  img: 'http://lorempixel.com/1200/500/' + style + '/' + ((i + 1) % 10) ,
-                  color: vm.colors[ (i*10) % vm.colors.length],
-                  odd: (i % 2 === 0)
-              };
-          }
-
-          function addSlide(target, style) {
-              target.push(getSlide(target, style));
-          }
+        function activate() {          
 
           vm.carouselIndex = 3;
           vm.carouselIndex2 = 0;
@@ -113,39 +137,42 @@ angular
           vm.carouselIndex3 = 5;
           vm.carouselIndex4 = 5;
 
-          function addSlides(target, style, qty) {
-              for (var i=0; i < qty; i++) {
-                  addSlide(target, style);
-              }
-          }
 
-          // 1st ngRepeat demo
-          vm.slides = [];
-          addSlides(vm.slides, 'sports', 50);
-
-          // 2nd ngRepeat demo
-          vm.slides2 = [];
-          addSlides(vm.slides2, 'sports', 10);
+          vm.pontos = [{
+                  id: 1,
+                  label: 'slide #1',
+                  desc: 'Museu',
+                  img: '/server/pt1.jpg'
+              },
+              {
+                  id: 2,
+                  label: 'slide #2',
+                  desc: 'Ponto Turistico',
+                  img: '/server/pt2.jpg'
+              },{
+                  id: 3,
+                  label: 'slide #3',
+                  desc: 'São Paulo',
+                  img: '/server/pt3.jpg'
+              }];
 
           // 3rd ngRepeat demo
-          vm.slides3 = [];
-          addSlides(vm.slides3, 'people', 50);
-
-          // 4th ngRepeat demo
-          vm.slides4 = [];
-          addSlides(vm.slides4, 'city', 50);
-
-
-          // 5th ngRepeat demo
-          vm.slides6 = [];
-          vm.carouselIndex6 = 0;
-          addSlides(vm.slides6, 'sports', 10);
-          vm.addSlide = function(at) {
-              if(at==='head') {
-                  vm.slides6.unshift(getSlide(vm.slides6, 'people'));
-              } else {
-                  vm.slides6.push(getSlide(vm.slides6, 'people'));
-              }
-          };          
+          vm.banners = [{
+                  id: 1,
+                  label: 'slide #1',
+                  desc: 'Museu',
+                  img: '/server/h1.jpg'
+              },
+              {
+                  id: 2,
+                  label: 'slide #2',
+                  desc: 'Ponto Turistico',
+                  img: '/server/h2.png'
+              },{
+                  id: 3,
+                  label: 'slide #3',
+                  desc: 'São Paulo',
+                  img: '/server/f1.jpg'
+              }];
         }
     }

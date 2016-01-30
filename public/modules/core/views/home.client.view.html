@@ -1,4 +1,4 @@
-<h3>
+<h3 ng-show="!caro.principal">
    <!-- START Language list-->
    <div class="pull-right">
       <div dropdown="" is-open="language.listIsOpen" class="btn-group">
@@ -16,115 +16,135 @@
    <small>{{ 'dashboard.WELCOME' | translate:{ appName: app.name } }} !</small>
 </h3>
 
-<div ng-controller="AngularCarouselController as caro" class="container-fluid"> 
+<div class="container-fluid"> 
 
+   <div ng-show="!caro.principal">
    <!-- START widgets box-->
-   <div class="row">
+      <div class="row">
 
-      <div class="col-lg-3 col-sm-6">
-         <!-- START widget-->
-         <a href="" ng-click="caro.teste()">
-            <div class="panel widget bg-primary">
+         <div class="col-lg-3 col-sm-6">
+            <!-- START widget-->
+            <a href="" ng-click="caro.teste()">
+               <div class="panel widget bg-primary">
+                  <div class="row row-table">
+                     <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+                        <em class="icon-cloud-upload fa-3x"></em>
+                     </div>
+                     <div class="col-xs-8 pv-lg">
+                        <div class="h2 mt0">{{ 'dashboard.SALDO' | translate:{ appName: app.name } }}</div>
+                     </div>
+                  </div>
+               </div>
+            </a>
+            
+            <input type='text' class="form-control" id="saldo" ng-model="caro.saldo" ng-show="caro.showsaldo" ng-virtual-keyboard="{forcePosition: 'bottom', enterSubmit:caro.executeSaldo}"/>
+
+         </div>
+
+         <div class="col-lg-3 col-sm-6">
+            <!-- START widget-->
+            <a href="" ng-click="caro.recarga()">
+               <div class="panel widget bg-purple">
+                  <div class="row row-table">
+                     <div class="col-xs-4 text-center bg-purple-dark pv-lg">
+                        <em class="icon-globe fa-3x"></em>
+                     </div>
+                     <div class="col-xs-8 pv-lg">
+                        <div class="h2 mt0">RECARGA DE BILHETE
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </a>
+         </div>
+
+         <div class="col-lg-3 col-md-6">
+            <!-- START widget-->
+            <div class="panel widget bg-green">
                <div class="row row-table">
-                  <div class="col-xs-4 text-center bg-primary-dark pv-lg">
-                     <em class="icon-cloud-upload fa-3x"></em>
+                  <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                     <em class="icon-bubbles fa-3x"></em>
                   </div>
                   <div class="col-xs-8 pv-lg">
-                     <div class="h2 mt0">{{ 'dashboard.SALDO' | translate:{ appName: app.name } }}</div>
+                     <div class="h2 mt0">PREVISÕES CHEGADA</div>
                   </div>
                </div>
             </div>
-         </a>
-         
-         <input type='text' class="form-control" id="saldo" ng-model="caro.saldo" ng-show="caro.showsaldo" ng-virtual-keyboard="{forcePosition: 'bottom', enterSubmit:caro.executeSaldo}"/>
+         </div>
 
-      </div>
-
-      <div class="col-lg-3 col-sm-6">
-         <!-- START widget-->
-         <a href="" ng-click="caro.recarga()">
-            <div class="panel widget bg-purple">
+         <div class="col-lg-3 col-md-6">
+            <!-- START widget-->
+            <div class="panel widget bg-gray">
                <div class="row row-table">
-                  <div class="col-xs-4 text-center bg-purple-dark pv-lg">
-                     <em class="icon-globe fa-3x"></em>
+                  <div class="col-xs-4 text-center bg-gray-dark pv-lg">
+                     <em class="icon-bubbles fa-3x"></em>
                   </div>
                   <div class="col-xs-8 pv-lg">
-                     <div class="h2 mt0">RECARGA DE BILHETE
+                     <div class="h2 mt0">CONSULTA DA PARADA</div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <div class="col-lg-3 col-md-6">
+            <!-- START date widget-->
+            <div class="panel widget">
+               <div class="row row-table">
+                  <div class="col-xs-4 text-center bg-green pv-lg">
+                     <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
+                     <now format="MMMM" class="text-sm"></now>
+                     <br/>
+                     <now format="d" class="h2 mt0"></now>
+                  </div>
+                  <div class="col-xs-8 pv-lg">
+                     <div class="h2 mt0">
+                        <now format="EEEE" class="text-uppercase"></now>
+                        <br/>
+                        <now format="h:mm" class="h2 mt0"></now>
+                        <now format="a" class="text-muted text-sm"></now>
                      </div>
                   </div>
                </div>
             </div>
-         </a>
-      </div>
 
-      <div class="col-lg-3 col-md-6">
-         <!-- START widget-->
-         <div class="panel widget bg-green">
-            <div class="row row-table">
-               <div class="col-xs-4 text-center bg-green-dark pv-lg">
-                  <em class="icon-bubbles fa-3x"></em>
-               </div>
-               <div class="col-xs-8 pv-lg">
-                  <div class="h2 mt0">PREVISÕES DE CHEGADA</div>
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6">
-         <!-- START widget-->
-         <div class="panel widget bg-gray">
-            <div class="row row-table">
-               <div class="col-xs-4 text-center bg-gray-dark pv-lg">
-                  <em class="icon-bubbles fa-3x"></em>
-               </div>
-               <div class="col-xs-8 pv-lg">
-                  <div class="h2 mt0">CONSULTA DA PARADA</div>
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <div class="col-lg-3 col-md-6">
-         <!-- START date widget-->
-         <div class="panel widget">
-            <div class="row row-table">
-               <div class="col-xs-4 text-center bg-green pv-lg">
-                  <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
-                  <now format="MMMM" class="text-sm"></now>
-                  <br/>
-                  <now format="d" class="h2 mt0"></now>
-               </div>
-               <div class="col-xs-8 pv-lg">
-                  <div class="h2 mt0">
-                     <now format="EEEE" class="text-uppercase"></now>
-                     <br/>
-                     <now format="h:mm" class="h2 mt0"></now>
-                     <now format="a" class="text-muted text-sm"></now>
-                  </div>
-               </div>
-            </div>
+            <!-- END date widget    -->
          </div>
 
-         <!-- END date widget    -->
       </div>
+   <!-- END widgets box-->
 
-   </div>
-<!-- END widgets box-->
-
-   <div class="container-fluid">         
-      <div>      
-         <div class="carousel-demo">
-            <ul rn-carousel="" rn-carousel-index="caro.carouselIndex2" rn-carousel-auto-slide="" rn-carousel-pause-on-hover="" rn-carousel-buffered="" class="list-unstyled carousel2">            
-               <li ng-repeat="slide in caro.slides2 track by slide.id" ng-class="'id-' + slide.id">
-                  <h3>{{ slide.desc }}</h3>
-                  <div ng-style="{'background-image': 'url(' + slide.img + ')'}" class="bgimage"></div>
-               </li>
-            </ul>         
+      <div class="container-fluid">         
+         <div>      
+            <div class="carousel-demo">
+               <ul rn-carousel="" rn-carousel-index="caro.carouselIndex2" rn-carousel-auto-slide="" rn-carousel-pause-on-hover="" rn-carousel-buffered="" class="list-unstyled carousel2">            
+                  <li ng-repeat="slide in caro.pontos track by slide.id" ng-class="'id-' + slide.id">
+                     <h3>{{ slide.desc }}</h3>
+                     <div ng-style="{'background-image': 'url(' + slide.img + ')'}" class="bgimage"></div>
+                  </li>
+               </ul>         
+            </div>
          </div>
       </div>
    </div>
+
+
+   <div ng-show="caro.principal" ng-click="caro.principal = false">
+      <div class="container-fluid">         
+         <div>      
+            <div class="carousel-demo">
+               <ul rn-carousel="" rn-carousel-index="caro.carouselIndex2" rn-carousel-auto-slide="" rn-carousel-pause-on-hover="" rn-carousel-buffered="true" class="list-unstyled carousel2">            
+                  <li ng-repeat="slide in caro.banners track by slide.id" ng-class="'id-' + slide.id">
+                     <h3>{{ slide.desc }}</h3>
+                     <div ng-style="{'background-image': 'url(' + slide.img + ')'}" class="bgimage"></div>
+                  </li>
+               </ul>         
+            </div>
+         </div>
+      </div>
+   </div>
+
 </div>
+
 
 
 
