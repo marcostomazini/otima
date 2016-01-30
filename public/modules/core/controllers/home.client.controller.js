@@ -7,7 +7,9 @@ angular
     AngularCarouselController.$inject = ['$scope', '$timeout', '$http', '$interval', 'SweetAlert', 'ngDialog'];
 
     function AngularCarouselController($scope, $timeout, $http, $interval, SweetAlert, ngDialog) {
-        var vm = this;        
+        var vm = this;       
+
+        document.body.style.cursor = 'none'; 
 
         vm.showsaldo = false;
         vm.principal = false;
