@@ -41,6 +41,25 @@ angular
         $interval(function() {
           vm.principal = !vm.principal;
 
+          // $http({
+          //   method: 'GET',
+          //   url: '/photo'
+          // }).then(function successCallback(response) {
+
+          //   // $http({
+          //   //   method: 'GET',
+          //   //   url: '/photo'
+          //   //   //https://faceplusplus-faceplusplus.p.mashape.com/detection/detect?attribute=glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url=http%3A%2F%2Fwww.faceplusplus.com%2Fwp-content%2Fthemes%2Ffaceplusplus%2Fassets%2Fimg%2Fdemo%2F1.jpg
+          //   // }).then(function successCallback(response) {            
+                   
+          //   // }, function errorCallback(response) {
+
+          //   // });
+                 
+          // }, function errorCallback(response) {
+
+          // });
+
           if (1 == 1) {
             // homem
             vm.banners = vm.masculino;
