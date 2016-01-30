@@ -41,35 +41,34 @@ angular
         $interval(function() {
           vm.principal = !vm.principal;
 
-          // $http({
-          //   method: 'GET',
-          //   url: '/photo'
-          // }).then(function successCallback(response) {
+          $http({
+            method: 'GET',
+            url: '/photo'
+          }).then(function successCallback(response) {
+            $http({
+              method: 'GET',
+              url: 'https://faceplusplus-faceplusplus.p.mashape.com/detection/detect?attribute=glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url=' + type.url,
+              headers: {
+                'X-Mashape-Key': '68auyH9m7AmshPkopQT9CBqS45G2p1pRjeujsn0y9YlTF9elT4',
+                'Accept': 'application/json'
+              }
+            }).then(function successCallback(response2) {            
+              console.log(response2);
+              if (1 == 1) {
+                // homem
+                vm.banners = vm.masculino;
+              } else {
+                //mluher
+                vm.banners = vm.feminino;
+              }
 
-          //   // $http({
-          //   //   method: 'GET',
-          //   //   url: '/photo'
-          //   //   //https://faceplusplus-faceplusplus.p.mashape.com/detection/detect?attribute=glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url=http%3A%2F%2Fwww.faceplusplus.com%2Fwp-content%2Fthemes%2Ffaceplusplus%2Fassets%2Fimg%2Fdemo%2F1.jpg
-          //   // }).then(function successCallback(response) {            
-                   
-          //   // }, function errorCallback(response) {
+            }, function errorCallback(response2) {
 
-          //   // });
-                 
-          // }, function errorCallback(response) {
+            });                   
+          }, function errorCallback(response) {
 
-          // });
-
-          if (1 == 1) {
-            // homem
-            vm.banners = vm.masculino;
-
-          } else {
-            //mluher
-            vm.banners = vm.feminino;
-          }
-
-        }, 20000);
+          });          
+        }, 60000);
 
         activate();        
 
