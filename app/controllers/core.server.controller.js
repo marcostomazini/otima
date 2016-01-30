@@ -16,7 +16,7 @@ exports.index = function(req, res) {
 exports.photo = function(req, res) {
 	var camera = new RaspiCam({
 		mode: "photo",
-		output: "teste.jpg",
+		output: "/home/pi/teste.jpg",
 		w: 180
 	});
 	camera.start('timelapse');
@@ -30,5 +30,5 @@ exports.photo = function(req, res) {
     	console.log(filename);
 	});
 
-	res.json({'type': 'success', 'teste': photo});
+	res.json({'type': 'success', 'teste': camera});
 };
