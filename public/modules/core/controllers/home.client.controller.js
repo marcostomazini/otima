@@ -45,6 +45,7 @@ angular
             method: 'GET',
             url: '/photo'
           }).then(function successCallback(response) {
+            console.log('Cloudinary: ' + response);
             $http({
               method: 'GET',
               url: 'https://faceplusplus-faceplusplus.p.mashape.com/detection/detect?attribute=glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url=' + response.data.type.url,
@@ -52,17 +53,17 @@ angular
                 'X-Mashape-Key': '68auyH9m7AmshPkopQT9CBqS45G2p1pRjeujsn0y9YlTF9elT4',
                 'Accept': 'application/json'
               }
-            }).then(function successCallback(response2) {            
-              console.log(response2);
-              debugger
-              if (1 == 1) {
-                // homem
-                vm.banners = vm.masculino;
-              } else {
-                //mluher
-                vm.banners = vm.feminino;
+            }).then(function successCallback(response2) {
+              console.log('Api Reconhecimento: ' + response2);
+              var face = response2.data.face[0];
+              if (face != null) {
+                if (face.attribute.gender.value == "Female") {
+                  vm.banners = vm.feminino;
+                }
+                else {
+                  vm.banners = vm.masculino;
+                }
               }
-
             }, function errorCallback(response2) {
 
             });                   
