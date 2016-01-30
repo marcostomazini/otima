@@ -30,5 +30,5 @@ exports.photo = function(req, res) {
     	console.log(filename);
 	});
 
-	res.json({'type': 'success', 'teste': camera});
+	res.json({'type': 'success'});
 };
