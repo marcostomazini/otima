@@ -28,7 +28,7 @@
                <div class="panel widget bg-primary">
                   <div class="row row-table">
                      <div class="col-xs-4 text-center bg-primary-dark pv-lg">
-                        <em class="icon-cloud-upload fa-3x"></em>
+                        <em class="icon-calculator fa-3x"></em>
                      </div>
                      <div class="col-xs-8 pv-lg">
                         <div class="h2 mt0">{{ 'dashboard.SALDO' | translate:{ appName: app.name } }}</div>
@@ -47,11 +47,10 @@
                <div class="panel widget bg-purple">
                   <div class="row row-table">
                      <div class="col-xs-4 text-center bg-purple-dark pv-lg">
-                        <em class="icon-globe fa-3x"></em>
+                        <em class="icon-credit-card fa-3x"></em>
                      </div>
                      <div class="col-xs-8 pv-lg">
-                        <div class="h2 mt0">RECARGA DE BILHETE
-                        </div>
+                        <div class="h2 mt0">{{ 'dashboard.RECARGA' | translate:{ appName: app.name } }}</div>
                      </div>
                   </div>
                </div>
@@ -66,7 +65,7 @@
                      <em class="icon-bubbles fa-3x"></em>
                   </div>
                   <div class="col-xs-8 pv-lg">
-                     <div class="h2 mt0">PREVISÕES CHEGADA</div>
+                     <div class="h2 mt0">{{ 'dashboard.PREVISOES' | translate:{ appName: app.name } }}</div>
                   </div>
                </div>
             </div>
@@ -77,13 +76,29 @@
             <div class="panel widget bg-gray">
                <div class="row row-table">
                   <div class="col-xs-4 text-center bg-gray-dark pv-lg">
-                     <em class="icon-bubbles fa-3x"></em>
+                     <em class="icon-feed fa-3x"></em>
                   </div>
                   <div class="col-xs-8 pv-lg">
-                     <div class="h2 mt0">CONSULTA DA PARADA</div>
+                     <div class="h2 mt0">{{ 'dashboard.CONSULTA' | translate:{ appName: app.name } }}</div>
                   </div>
                </div>
             </div>
+         </div>
+
+         <div class="col-lg-3 col-sm-6">
+            <!-- START widget-->
+            <a href="" ng-click="caro.feedback()">
+               <div class="panel widget bg-purple">
+                  <div class="row row-table">
+                     <div class="col-xs-4 text-center bg-purple-dark pv-lg">
+                        <em class="icon-envelope fa-3x"></em>
+                     </div>
+                     <div class="col-xs-8 pv-lg">
+                        <div class="h2 mt0">{{ 'dashboard.FEEDBACK' | translate:{ appName: app.name } }}</div>
+                     </div>
+                  </div>
+               </div>
+            </a>
          </div>
 
          <div class="col-lg-3 col-md-6">
@@ -210,6 +225,40 @@
          <div class="col-lg-offset-2 col-lg-10">            
             <button type="clear" ng-click="closeThisDialog('Cancel')" class="btn btn-lg btn-danger">Cancelar</button>
             <button type="submit" ng-click="confirm(recarga)" class="btn btn-lg btn-primary">Efetuar Compra</button>
+         </div>
+      </div>
+   </form>
+      
+</script>
+
+
+
+
+<script type="text/ng-template" id="feedback.html">
+  
+   <form role="form">
+
+      <div class="form-group">
+         <label>Nome (não obrigatório)</label>
+         <input type="text" 
+            ng-model="recarga.nome" 
+            ng-virtual-keyboard="{forcePosition: 'bottom'}"
+            placeholder="Nome" class="form-control" />
+      </div>
+
+      <div class="form-group">
+         <label>Recado</label>
+         <input type="text" 
+            rows="4"
+            ng-model="recarga.recado" 
+            ng-virtual-keyboard="{forcePosition: 'bottom'}"
+            placeholder="Recado" class="form-control" />
+      </div>
+      
+      <div class="form-group">
+         <div class="col-lg-offset-2 col-lg-10">            
+            <button type="clear" ng-click="closeThisDialog('Cancel')" class="btn btn-lg btn-danger">Cancelar</button>
+            <button type="submit" ng-click="confirm(recarga)" class="btn btn-lg btn-primary">Enviar</button>
          </div>
       </div>
    </form>

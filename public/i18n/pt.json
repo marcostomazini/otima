@@ -2,7 +2,11 @@
   "dashboard": {
     "WELCOME": "Bem vindo a {{appName}}",
     "INFORMATION": "Informacoes",
-    "SALDO": "CONSULTA DE SALDO"
+    "SALDO": "CONSULTA DE SALDO",
+    "RECARGA": "RECARGA DE BILHETE",
+    "PREVISOES": "PREVISÕES CHEGADA",
+    "CONSULTA": "CONSULTA DA PARADA",
+    "FEEDBACK": "DEIXE SUA MENSAGEM"
   },
   "topbar": {
     "messages": {

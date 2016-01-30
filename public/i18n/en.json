@@ -2,7 +2,11 @@
   "dashboard": {
     "WELCOME": "Welcome to {{appName}}",
     "INFORMATION": "Information",
-    "SALDO": "BALANCE INQUIRY"
+    "SALDO": "BALANCE INQUIRY",
+    "RECARGA": "TICKET RECHARGING",
+    "PREVISOES": "ESTIMATED ARRIVAL",    
+    "CONSULTA": "VIEW CONSULTAT",
+    "FEEDBACK": "SEND FEEDBACK"
   },
   "topbar": {
     "messages": {

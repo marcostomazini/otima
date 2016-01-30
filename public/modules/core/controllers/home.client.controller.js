@@ -101,6 +101,24 @@ angular
           }, 0);
         }
 
+        vm.feedback = function() {
+
+          var dialog = ngDialog.openConfirm({
+              //template: '<p>Just passing through!{{caro.saldoa}}</p><input type=\'text\' class="form-control" id="saldo" ng-model="caro.saldoa" ng-show="caro.showsaldo" ng-virtual-keyboard="{forcePosition: \'bottom\', enterSubmit:caro.executeSaldo}"/>',
+              template: 'feedback.html',
+              showClose: false,
+              className: 'ngdialog-theme-default',
+              closeByEscape: true
+            }).then(function(value){
+              SweetAlert.swal('Sucesso!', 'seu feedback foi enviada com sucesso, obrigado!', 'success');              
+            }, function(value){
+              console.log('rejected:' + value);
+            });
+            setTimeout(function () {
+              dialog.close();
+            }, 30000);
+        }
+
         vm.recarga = function() {
 
           var dialog = ngDialog.openConfirm({
@@ -111,34 +129,46 @@ angular
               closeByEscape: true
             }).then(function(value){
               
-              var data = {
-                "card": value.numerocartao, //            <-- Número do bilhete eletrônico que deve receber os créditos
-                "value": value.valor,       //           <-- Valor da recarga em centavos de R$
-                "payment": {
-                  "card": value.numerocartaocredito, //    <-- Número do cartão de crédito
-                  "cvv": value.cvv,               //    <-- Código de verificação
-                  "owner": value.nomecartao,   //    <-- Nome no cartão
-                  "expires": value.expiracao        //    <-- Validade do cartão
-                }
-              };
+              try {
+                var data = {
+                  "card": value.numerocartao, //            <-- Número do bilhete eletrônico que deve receber os créditos
+                  "value": value.valor,       //           <-- Valor da recarga em centavos de R$
+                  "payment": {
+                    "card": value.numerocartaocredito, //    <-- Número do cartão de crédito
+                    "cvv": value.cvv,               //    <-- Código de verificação
+                    "owner": value.nomecartao,   //    <-- Nome no cartão
+                    "expires": value.expiracao        //    <-- Validade do cartão
+                  }
+                };
 
-              $http.put('http://campusparty.cittamobi.com.br/recharge/balance', data)
-                .success(function (data, status, headers, config) {
-                    SweetAlert.swal('Sucesso!', 'Seu novo saldo é R$: ' + data.balance , 'success');
-                })
-                .error(function (data, status, header, config) {
-                  SweetAlert.swal({   
-                    title: 'Por favor, revise os dados e tente novamente, obrigado!!',   
-                    text: 'Problema em alguma informacão incorreta.',   
-                    type: 'warning',   
-                    confirmButtonColor: '#DD6B55',   
-                    confirmButtonText: 'OK!',
-                    closeOnConfirm: true
-                  },  function(){  
-                    
-                  });
+                 $http.put('http://campusparty.cittamobi.com.br/recharge/balance', data)
+                    .success(function (data, status, headers, config) {
+                        SweetAlert.swal('Sucesso!', 'Seu novo saldo é R$: ' + data.balance , 'success');
+                    })
+                    .error(function (data, status, header, config) {
+                      SweetAlert.swal({   
+                        title: 'Por favor, revise os dados e tente novamente, obrigado!!',   
+                        text: 'Problema em alguma informacão incorreta.',   
+                        type: 'warning',   
+                        confirmButtonColor: '#DD6B55',   
+                        confirmButtonText: 'OK!',
+                        closeOnConfirm: true
+                      },  function(){  
+                        
+                      });
+                    });
+              } catch(ex) {
+                SweetAlert.swal({   
+                  title: 'Por favor, revise os dados e tente novamente, obrigado!!',   
+                  text: 'Alguma informacão não foi preenchida.',   
+                  type: 'warning',   
+                  confirmButtonColor: '#DD6B55',   
+                  confirmButtonText: 'OK!',
+                  closeOnConfirm: true
+                },  function(){  
+                  
                 });
-
+              }                   
               // Perform the save here
             }, function(value){
               console.log('rejected:' + value);
