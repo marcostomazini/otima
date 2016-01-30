@@ -47,13 +47,14 @@ angular
           }).then(function successCallback(response) {
             $http({
               method: 'GET',
-              url: 'https://faceplusplus-faceplusplus.p.mashape.com/detection/detect?attribute=glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url=' + type.url,
+              url: 'https://faceplusplus-faceplusplus.p.mashape.com/detection/detect?attribute=glass%2Cpose%2Cgender%2Cage%2Crace%2Csmiling&url=' + response.data.type.url,
               headers: {
                 'X-Mashape-Key': '68auyH9m7AmshPkopQT9CBqS45G2p1pRjeujsn0y9YlTF9elT4',
                 'Accept': 'application/json'
               }
             }).then(function successCallback(response2) {            
               console.log(response2);
+              debugger
               if (1 == 1) {
                 // homem
                 vm.banners = vm.masculino;
